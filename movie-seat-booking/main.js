@@ -5,7 +5,7 @@ const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
 // + is to make movieSelect whci is a string to become number.same as using parseInt(movieSelect)
-const ticketPrice = +movieSelect.value
+let ticketPrice = +movieSelect.value
 
 // update total and count
 
@@ -13,9 +13,18 @@ function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
     // to get the number of seat selected in the array 
     const selectedSeatCount = selectedSeats.length
-    console.log(selectedSeatCount)
+    count.innerText = selectedSeatCount
+    total.innerText = selectedSeatCount * ticketPrice
 }
 
+// movie select event and change of price
+movieSelect.addEventListener('change', (e) => {
+    ticketPrice = e.target.value;
+    updateSelectedCount()
+})
+
+
+// seat click event
 container.addEventListener('click', (e) => {
     // to select class of seat in html and and leave out seat-occupied
     if(e.target.classList.contains('seat') && !e.target.classList.contains('occupied')){
