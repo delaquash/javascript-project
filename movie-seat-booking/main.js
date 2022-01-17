@@ -7,10 +7,24 @@ const movieSelect = document.getElementById('movie');
 // + is to make movieSelect whci is a string to become number.same as using parseInt(movieSelect)
 let ticketPrice = +movieSelect.value
 
+// save selected movie index and price
+function setMovieData(movieIndex, moviePrice){
+    localStorage.setItem('selectedMovieIndex', movieIndex)
+    localStorage.setItem('selectedMoviePrice', moviePrice)
+}
+
 // update total and count
 
 function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
+    // copy selected seats into an array
+    // map through array                                  // return a new array indexes
+    const seatsIndex = [...selectedSeats].map((seat) => ([...seats].indexOf(seat)) )
+
+    // localStorage to set the value
+    localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex))
+
+
     // to get the number of seat selected in the array 
     const selectedSeatCount = selectedSeats.length
     count.innerText = selectedSeatCount
@@ -19,7 +33,8 @@ function updateSelectedCount() {
 
 // movie select event and change of price
 movieSelect.addEventListener('change', (e) => {
-    ticketPrice = e.target.value;
+    ticketPrice = +e.target.value;
+    setMovieData(e.target.selectedIndex, e.target.value)
     updateSelectedCount()
 })
 
