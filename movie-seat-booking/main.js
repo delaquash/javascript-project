@@ -4,6 +4,8 @@ const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
+populateUI();
+
 // + is to make movieSelect whci is a string to become number.same as using parseInt(movieSelect)
 let ticketPrice = +movieSelect.value
 
@@ -39,6 +41,24 @@ movieSelect.addEventListener('change', (e) => {
 })
 
 
+// get data from localstorage and populate UI
+function populateUI() {
+    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
+    if(selectedSeats !== null && selectedSeats.length > 0) {
+        seats.forEach((seat, index) => {
+            if(selectedSeats.indexOf(index) > -1){
+                seat.classList.add('selected');
+            }
+        })
+    }
+    const selectedMovieIndex = localStorage.getItem('selectedMovieIndex')
+    if(selectedMovieIndex !== null){
+        movieSelect.selectedIndex = selectedMovieIndex
+    }
+}
+
+
+
 // seat click event
 container.addEventListener('click', (e) => {
     // to select class of seat in html and and leave out seat-occupied
@@ -50,3 +70,6 @@ container.addEventListener('click', (e) => {
     }
 
 })
+
+// initial count and total set
+updateSelectedCount()
