@@ -35,7 +35,7 @@ function updateProgress() {
     // get video secs
     let secs = Math.floor(video.currentTime % 60 );
     if(secs < 10){
-        secs = '0' + String(sec)s
+        secs = '0' + String(secs)
     }
 
     timestamp.innerHTML = `${min}:${secs}`
@@ -44,14 +44,12 @@ function updateProgress() {
 // set video time to progress
 function setVideoProgress() {
     video.currentTime = parseInt(progress.value * video.duration)/100;
-
-
 }
 
 
 
 // stop video
-function updateStop(){
+function stopVideo(){
     video.currentTime = 0;
     video.pause()
 }
@@ -64,4 +62,4 @@ video.addEventListener('timeupdate', updateProgress);
 
 play.addEventListener('click', toggleVideoStatus);
 stop.addEventListener('click', stopVideo);
-progress.addEventListener('change', setVideoProress)
+progress.addEventListener('change', setVideoProgress)
