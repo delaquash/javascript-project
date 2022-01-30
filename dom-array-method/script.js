@@ -1,11 +1,14 @@
 const main = document.getElementById('main');
-const addUserBtn = document.getElementById('add-user');
+const addUserBtn = document.getElementById('add_user');
 const doubleBtn = document.getElementById('double');
 const showMillionairesBtn = document.getElementById('show-millionaires');
 const sortbtn = document.getElementById('sort')
 const calculateWealthBtn = document.getElementById('calculate-wealth');
 
 let data = [];
+getRandomUser()
+getRandomUser()
+getRandomUser()
 
 // fetch random user and add money
 async function getRandomUser() {
@@ -18,8 +21,39 @@ async function getRandomUser() {
         name: `${user.name.first} ${user.name.last}`,
         money: Math.floor(Math.random() * 1000000)
     }
-    console.log(user);
+    addData(newUser);
 }
 
-getRandomUser()
-getRandomUser()
+// add new obj to the data array
+function addData(obj) {
+    data.push(obj)
+
+    updateDOM();
+}
+
+// updating DOM
+function updateDOM ( providedData = data ) {
+    // clear main div
+    main.innerHTML = '<h2><strong>Person</strong>Wealth</h2>'
+
+    providedData.forEach((item) => {
+        // create new div
+        const element = document.createElement('div');
+        // create a new class with the new div
+        element.classList.add('person');
+        // pass in html and add to numberToCurrencyStrings to make it appear as monetary value
+        element.innerHTML = `<strong>${item.name}</strong> ${numberToCurrencyStrings(item.money)}`;
+        // to append a child element which is the element we just constructed
+        main.appendChild(element)
+    })
+}
+
+// convert number to currency strings
+const numberToCurrencyStrings=(number) => {
+ return `₦` + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+
+
+// eventlistener to add more user
+addUserBtn.addEventListener('click', getRandomUser);
