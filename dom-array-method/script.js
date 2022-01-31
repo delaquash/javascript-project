@@ -33,6 +33,21 @@ function doubleMoney() {
     updateDOM()
 }
 
+// sort by richest
+function sortByRichest() {
+    // sort from highest to lowest
+    data.sort((a, b) => b.money - a.money);
+    updateDOM()
+}
+
+// show only millionaires
+// function showMillionaires() {
+//     // filter or remove those with figures less than one million 
+//    data = data.filter((user) => user.money > 1000000);
+//     updateDOM()
+// }
+
+
 // add new obj to the data array
 function addData(obj) {
     data.push(obj)
@@ -67,3 +82,5 @@ const numberToCurrencyStrings=(number) => {
 // eventlistener to add more user
 addUserBtn.addEventListener('click', getRandomUser);
 doubleBtn.addEventListener('click', doubleMoney);
+sortbtn.addEventListener('click', sortByRichest)
+showMillionairesBtn.addEventListener('click', showMillionaires)
