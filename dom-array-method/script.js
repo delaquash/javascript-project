@@ -40,12 +40,12 @@ function sortByRichest() {
     updateDOM()
 }
 
-// show only millionaires
-// function showMillionaires() {
-//     // filter or remove those with figures less than one million 
-//    data = data.filter((user) => user.money > 1000000);
-//     updateDOM()
-// }
+show only millionaires
+function showMillionaires() {
+    // filter or remove those with figures less than one million 
+   data = data.filter((user) => user.money > 1000000);
+    updateDOM()
+}
 
 
 // add new obj to the data array
