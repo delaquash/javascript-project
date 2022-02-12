@@ -50,7 +50,25 @@ const addTransactionToDom = (transactions) => {
 
 // update the balance, income and expense
 function updateValues () {
-    const amounts = transactions.map( transaction => transaction.map)
+    const amounts = transactions.map( transaction => transaction.amount);
+    // total money in both expenses and income
+    const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2)
+    // money received
+    const income = amounts  
+                        .filter(item => item > 0)
+                        .reduce((acc, item) => (acc += item), 0)
+                        .toFixed(2);
+// expenditure or money spent
+    const expenses = (amounts
+                        .filter(item => item < 0)
+                        .reduce((acc, item) => (acc += item), 0)
+                        .toFixed(2)
+
+    )
+
+    balance.innerHTML = `$${total}`;
+    money_plus.innerHTML= `$${income}`
+    money_minus.innerHTML = `$${expenses}`
 }
 
 
@@ -59,6 +77,7 @@ function updateValues () {
 const init = () => {
     list.innerHTML = '';
     transactions.forEach(addTransactionToDom)
+    updateValues()
 }
 
 init()
