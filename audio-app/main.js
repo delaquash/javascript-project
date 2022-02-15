@@ -51,3 +51,34 @@ playBtn.addEventListener('click', () => {
         playSong()
     }
 })
+
+// play previous song 
+function prevSong() {
+    // decrease song by -1 from the songIndex
+    songIndex--
+
+    if(songIndex < 0 ){
+        // settings song to the last song in the array
+        songIndex = songs.length -1
+    }
+
+    // load song with index and last song array
+    loadSong(songs[songIndex]);
+    playSong();
+}
+
+// play next song
+function nextSong() {
+    // increase song by +1
+    songIndex++
+    if(songIndex > songs.length - 1) {
+        songIndex=0;
+    }
+        loadSong(songs[songIndex])
+        playSong()
+    }
+
+
+// change songs
+prevBtn.addEventListener('click', prevSong)
+nextbtn.addEventListener('click', nextSong)
