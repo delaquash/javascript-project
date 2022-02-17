@@ -11,6 +11,19 @@ async function getPost() {
     return data
 }
 
+function showLoading() {
+    loading.classList.add('show');
+
+    setTimeout(() => {
+        loading.classList.remove('show')
+
+        setTimeout(() => {
+            page++
+            showPost()
+        }, 300);
+    }, 5000)
+}
+
 // show posts in DOM
 async function showPost() {
     const posts = await getPost()
@@ -35,3 +48,11 @@ posts.forEach(post => {
 }
 
 showPost()
+
+window.addEventListener('scroll', ()=> {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    if(scrollTop + clientHeight >= scrollHeight -5) {
+        showLoading()
+    }
+})
