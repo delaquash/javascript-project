@@ -37,7 +37,13 @@ const words = [
   
   // Init score
   let score = 0;
+
+//   initial difficulty level to be the value in localStorage or medium
+let difficulty =localStorage.getItem('difficulty') !== null ?localStorage.getItem('difficulty') :'medium'
   
+// set difficulty select mode
+difficultySelect.value = localStorage.getItem('difficulty') !== null ?localStorage.getItem('difficulty') :'medium'
+
   // Init time
   let time = 10;
 
@@ -101,9 +107,29 @@ text.addEventListener('input', e => {
 
         // to clear input field
         e.target.value = '';
-        // additional time to be added if user get it right before initial time elapse
-        time += 3;
+        // setting timer according to difficulty level
+        if(difficulty === 'hard') {
+            time += 2
+        } else if(difficulty === 'medium') {
+            time += 3
+        }else {
+            time += 5
+        }
+
+        // {difficulty === 'hard' ? time += 2 : difficulty === 'medium' ? time +3 : difficulty === 'easy' ? time +5}
+
         // update the new added time to initial time
         updateTime()
     }
+})
+
+// setting btn click for difficulty level
+settingsBtn.addEventListener('click', () => {
+    settings.classList.toggle('hide')
+})
+
+// setting selection of difficulty level
+settingsForm.addEventListener('change', (e) => {
+    difficulty = e.target.value;
+    localStorage.setItem('difficulty', difficulty)
 })
