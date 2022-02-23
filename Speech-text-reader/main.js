@@ -76,3 +76,13 @@ main.appendChild(box);
 }
 
 
+// toggle text box open
+toggleBtn.addEventListener('click', () => {
+    // show is a css class activated by this code
+    document.getElementById('text-box').classList.toggle('show')
+})
+
+// close text box
+closeBtn.addEventListener('click', () => {
+    document.getElementById('text-box').classList.remove('show')
+})
