@@ -75,7 +75,19 @@ box.innerHTML = `
 main.appendChild(box);
 }
 
+// store voices
+let voices =[];
+function getVoices() {
+    voices = speechSynthesis.getVoices();
 
+    // create a div element for each voices
+    voices.forEach(voice => {
+        const option = document.createElement('option')
+        option.value = voice.name;
+        option.innerText = `${voice.name} ${voice.lang}`
+        voiceSelect.appendChild(option)
+    })
+}
 // toggle text box open
 toggleBtn.addEventListener('click', () => {
     // show is a css class activated by this code
@@ -86,3 +98,8 @@ toggleBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     document.getElementById('text-box').classList.remove('show')
 })
+
+// voice changed
+speechSynthesis.addEventListener('voiceschanged', getVoices)
+
+getVoices()
