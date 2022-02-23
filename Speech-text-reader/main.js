@@ -70,11 +70,33 @@ box.innerHTML = `
   <img src="${image}" alt="${text}"  />
   <p class="info">${text}</p>
 `
+//
+box.addEventListener('click', () => {
+    setTextMessage(text);
+    speakText();
 
+    // add active class css effect
+    box.classList.add('active');
+    // set timeouit to remove active css function
+    setTimeout(() => {
+        box.classList.remove('active')
+    }, 800);
+})
 // @todo - speak event
 main.appendChild(box);
 }
 
+// init speech synth
+const message = new SpeechSynthesisUtterance()
+
+// set text
+function setTextMessage(text){
+    message.text = text;
+}
+// speak text
+function speakText() {
+    speechSynthesis.speak(message)
+}
 // store voices
 let voices =[];
 function getVoices() {
