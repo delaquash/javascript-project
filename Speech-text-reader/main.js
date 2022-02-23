@@ -97,6 +97,12 @@ function setTextMessage(text){
 function speakText() {
     speechSynthesis.speak(message)
 }
+
+// set voices
+function setVoice(e) {
+    message.voice = voices.find(voice => voice.name === e.target.value)
+}
+
 // store voices
 let voices =[];
 function getVoices() {
@@ -123,5 +129,12 @@ closeBtn.addEventListener('click', () => {
 
 // voice changed
 speechSynthesis.addEventListener('voiceschanged', getVoices)
+voiceSelect.addEventListener('change', setVoice)
+
+// read text button
+readBtn.addEventListener('click', () => {
+    setTextMessage(textarea.value);
+    speakText()
+})
 
 getVoices()
