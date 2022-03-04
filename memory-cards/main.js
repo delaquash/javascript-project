@@ -100,7 +100,7 @@ prevBtn.addEventListener('click', () => {
 
     currentActiveCard = currentActiveCard - 1;
 
-    if(currentActiveCard > 0) {
+    if(currentActiveCard < 0) {
         currentActiveCard = 0
     }
 
