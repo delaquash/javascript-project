@@ -85,6 +85,12 @@ function getCardsData() {
     return cards === null ? [] : cards;
 }
 
+// add card to localStorage
+function setCardsData(cards) {
+    localStorage.setItem('cards', JSON.stringify(cards));
+    window.location.reload();
+}
+
 // event listeners
 // for next button
 nextBtn.addEventListener('click', () => {
@@ -123,3 +129,27 @@ showBtn.addEventListener('click', () => addContainer.classList.add('show'));
 hideBtn.addEventListener('click', ()=> addContainer.classList.remove('show'));
 
 // add new card
+addCardBtn.addEventListener('click',() => {
+    const answer = answerEl.value;
+    const question = questionEl.value; 
+
+    if(question.trim() && answer.trim()){
+        const newCard = { answer, question }
+        createCard(newCard);
+
+        // to empty the input field after submission
+        answerEl.value='';
+        questionEl.value='';
+
+        addCardBtn.classList.remove('show');
+        cardsData.push(newCard);
+        setCardsData(cardsData);
+    }
+});
+
+// clear button
+clearBtn.addEventListener('click', ()=> {
+    localStorage.clear();
+    cardsContainer.innerHTML='';
+    window.location.reload()
+})
