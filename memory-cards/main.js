@@ -17,20 +17,22 @@ let currentActiveCard = 0;
 const cardsEl = [];
 
 // store card data
-const cardsData = [
-  {
-    question: 'What must a variable begin with?',
-    answer: 'A letter, $ or _'
-  },
-  {
-    question: 'What is a variable?',
-    answer: 'Container for a piece of data'
-  },
-  {
-    question: 'Example of Case Sensitive Variable',
-    answer: 'thisIsAVariable'
-  }
-];
+
+const cardsData = getCardsData()
+// const cardsData = [
+//   {
+//     question: 'What must a variable begin with?',
+//     answer: 'A letter, $ or _'
+//   },
+//   {
+//     question: 'What is a variable?',
+//     answer: 'Container for a piece of data'
+//   },
+//   {
+//     question: 'Example of Case Sensitive Variable',
+//     answer: 'thisIsAVariable'
+//   }
+// ];
 
 // create all cards
 function createCards(){
@@ -77,6 +79,11 @@ function updateCurrentText() {
 
 createCards();
 
+// get card from localstorage
+function getCardsData() {
+    const cards = JSON.parse(localStorage.getItem("cards"))
+    return cards === null ? [] : cards;
+}
 
 // event listeners
 // for next button
@@ -107,5 +114,12 @@ prevBtn.addEventListener('click', () => {
     cardsEl[currentActiveCard].className ='card active';
 
     updateCurrentText()
-})
+});
 
+// show add container
+showBtn.addEventListener('click', () => addContainer.classList.add('show'));
+
+// hide add container
+hideBtn.addEventListener('click', ()=> addContainer.classList.remove('show'));
+
+// add new card
