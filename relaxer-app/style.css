@@ -83,7 +83,7 @@ body {
 }
 
 
-.container .grow {
+.container.grow {
     animation: grow 3s linear forwards;
 }
 
@@ -95,7 +95,7 @@ body {
     }
 }
 
-.container .shrink {
+.container.shrink {
     animation: shrink 3s linear forwards;
 }
 
