@@ -30,7 +30,7 @@ body {
   flex: 0.5;
   margin: 10px;
   position: relative;
-  -webkit-transition: all 700ms ease-in;
+  --webkit-transition: all 700ms ease-in;
 }
 
 .panel h3 {
@@ -55,7 +55,6 @@ body {
     .container {
         width: 100vw;
     }
-
     .panel:nth-of-type(4),
     .panel:nth-of-type(5) {
         display: none;
